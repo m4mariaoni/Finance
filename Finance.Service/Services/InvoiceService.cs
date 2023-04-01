@@ -153,22 +153,14 @@ namespace Finance.Service.Services
             return result;
         }
 
-        public async Task<SaveResponse> PayInvoice(long id, string url)
+        public async Task<InvoiceViewModel> PayInvoice(long id, string url)
         {
             try
             {
                 var invoiceExist = _appRepository.Invoices.Search(x => x.Id == id).FirstOrDefault();
                 if (invoiceExist == null)
-                {
-                    ErrorResponse error = new ErrorResponse()
-                    {
-                        Error = Code.NotFound,
-                        Status = Description.NotFound,
-                        TimeSpan = DateTime.Now,
-                        Path = url
-                    };
-
-                    return new SaveResponse() { Account = error };
+                {              
+                   throw new Exception("Invoice does not exist");
                 }
 
                 invoiceExist.Status = Status.PAID;
@@ -191,12 +183,12 @@ namespace Finance.Service.Services
 
                 };
 
-                return new SaveResponse() { Account = view };
+                return view;
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

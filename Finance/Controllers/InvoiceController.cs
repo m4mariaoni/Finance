@@ -42,14 +42,7 @@ namespace Finance.Controllers
         {
             if (id <= 0)
             {
-                ErrorResponse error = new ErrorResponse()
-                {
-                    Error = Code.NotFound,
-                    Status = Description.NotFound,
-                    TimeSpan = DateTime.Now,
-                    Path = url
-                };
-                return BadRequest(error);
+                return BadRequest("Invoice does not exist");
             }
             address = new Uri(Request.Host.ToString());
             url = address.ToString() + "/invoice";

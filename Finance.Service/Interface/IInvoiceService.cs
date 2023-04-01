@@ -13,7 +13,7 @@ namespace Finance.Service.Interface
         Task<SaveResponse> GetAllInvoice(string url);
         Task<InvoiceViewModel> GetInvoiceById(long id, string url);
 
-        Task<SaveResponse> PayInvoice(long id, string url);
+        Task<InvoiceViewModel> PayInvoice(long id, string url);
         Task<InvoiceViewModel> GetInvoiceByReferenceId(string reference, string url);
 
         Task<InvoiceViewModel> DeleteInvoice(long id, string url);

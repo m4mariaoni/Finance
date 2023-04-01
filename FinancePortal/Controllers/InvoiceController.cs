@@ -61,8 +61,7 @@ namespace FinancePortal.Controllers
                 if (Resp.IsSuccessStatusCode)
                 {
                     var answer = Resp.Content.ReadAsStringAsync().Result;
-                    viewModel = JsonConvert.DeserializeObject<InvoiceViewModel>(answer);
-
+                    viewModel = JsonConvert.DeserializeObject<InvoiceViewModel>(answer);                                  
                 }
                 return View("GetInvoice", viewModel);
             }
