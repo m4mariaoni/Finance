@@ -37,7 +37,7 @@ namespace Finance.Controllers
 
         }
 
-        [HttpPut("invoices/{id}/pay")]
+        [HttpPut("{id}/pay")]
         public async Task<IActionResult> PayInvoice(long id)
         {
             if (id <= 0)
@@ -59,17 +59,16 @@ namespace Finance.Controllers
 
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetInvoicebyId(long id)
+        [HttpGet("{reference}")]
+        public async Task<IActionResult> GetInvoicebyReference(string reference)
         {
-            if (id <= 0)
+            if (reference == null)
             {
-
+                return BadRequest("Enter a valid Reference");
             }
             url = getLinks();
-            var result = _invoiceService.GetInvoiceById(id, url);
-
-            return Ok(result);
+            var result = await _invoiceService.GetInvoiceByReferenceId(reference, url);
+           return Ok(result);
         }
 
         [HttpGet]

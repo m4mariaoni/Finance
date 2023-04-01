@@ -8,7 +8,7 @@ namespace Finance.Data.Models
 {
     public class SaveResponse
     {
-        public object DList { get; set; }
+        public object Account { get; set; }
 
     }
 
@@ -19,7 +19,7 @@ namespace Finance.Data.Models
             var response = new SaveResponse
             {
 
-                DList = data,
+                Account = data,
 
             };
             return response;

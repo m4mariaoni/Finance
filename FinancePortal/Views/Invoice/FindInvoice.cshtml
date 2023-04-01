@@ -1,0 +1,33 @@
+﻿@model FinancePortal.Models.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "FindInvoice";
+}
+
+<h1>FindInvoice</h1>
+
+<h4>InvoiceViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FindInvoice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Reference" class="control-label"></label>
+                <input asp-for="Reference" class="form-control" />
+                <span>Enter your unique invoice reference number</span>
+                <span asp-validation-for="Reference" class="text-danger"></span>
+            </div>
+  
+            <div class="form-group">
+                <input type="submit" value="Find Invoice" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

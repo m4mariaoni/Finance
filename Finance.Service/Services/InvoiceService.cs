@@ -136,20 +136,21 @@ namespace Finance.Service.Services
         public async Task<InvoiceViewModel> GetInvoiceById(long id, string url)
         {
             var invoiceExist = _appRepository.Invoices.Search(x => x.Id == id).FirstOrDefault();
-            if (invoiceExist == null)
-            {
-
-            }
             var map = _mapper.Map<InvoiceViewModel>(invoiceExist);
             Links links = RandomGenerator.LinkGenerator(invoiceExist.Reference, url);
             map.Links = links;
-
             return map;
         }
 
-        public Task<InvoiceViewModel> GetInvoiceByReferenceId(long id, string url)
+        public async Task<InvoiceViewModel> GetInvoiceByReferenceId(string reference, string url)
         {
-            throw new NotImplementedException();
+           var invRef = _appRepository.Invoices.Search(x => x.Reference == reference).FirstOrDefault();
+            var studentid = _appRepository.Accounts.Search(x => x.Id == invRef.AccountId).Select(y => y.StudentId).FirstOrDefault();
+            var result =  _mapper.Map<InvoiceViewModel>(invRef);
+            result.StudentId = studentid;
+            Links links = RandomGenerator.LinkGenerator(reference, url);
+            result.Links = links;
+            return result;
         }
 
         public async Task<SaveResponse> PayInvoice(long id, string url)
