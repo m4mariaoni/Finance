@@ -12,4 +12,22 @@
 
     }
 
+
+    public class SaveResponse
+    {
+        public object Account { get; set; }
+
+    }
+
+    public static class RespMessage
+    {
+        public static SaveResponse Response(object data = null)
+        {
+            var response = new SaveResponse
+            {
+                Account = data,
+            };
+            return response;
+        }
+    }
 }

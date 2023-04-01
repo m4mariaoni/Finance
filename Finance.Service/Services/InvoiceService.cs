@@ -168,7 +168,7 @@ namespace Finance.Service.Services
                         Path = url
                     };
 
-                    return new SaveResponse() { DList = error };
+                    return new SaveResponse() { Account = error };
                 }
 
                 invoiceExist.Status = Status.PAID;
@@ -191,7 +191,7 @@ namespace Finance.Service.Services
 
                 };
 
-                return new SaveResponse() { DList = view };
+                return new SaveResponse() { Account = view };
             }
             catch (Exception ex)
             {
