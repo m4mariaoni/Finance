@@ -9,9 +9,6 @@ namespace Finance.Data.Models
 {
     public class AccountModel
     {
-        [StringLength(10, MinimumLength = 10)]
-        [Required(ErrorMessage = @"This field is required with 10 AlphaNumeric Characters")]
-        [RegularExpression(@"^[A-Z][0-9]*$", ErrorMessage = "This field requires this format:  C123456789")]
         public string StudentId { get; set; }
     }
 

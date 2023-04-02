@@ -26,8 +26,8 @@ namespace Finance.Service.Services
         }
         public async Task<InvoiceViewModel> CreateInvoice(InvoiceModel model, string url)
         {
-
-            var studentExist = _accountRepository.Search(x => x.StudentId == model.Accounts.StudentId).FirstOrDefault();
+            var studentExist = _accountRepository.Search(x => x.StudentId == model.StudentId).FirstOrDefault();
+            //var studentExist = _accountRepository.Search(x => x.StudentId == model.Accounts.StudentId).FirstOrDefault();
             if (studentExist == null)
             {
                 throw new Exception("You can't create an invoice without a valid student ID.t");
@@ -57,7 +57,7 @@ namespace Finance.Service.Services
             {
                 Amount = model.Amount,
                 DueDate = model.DueDate,
-                Type = model.Type,
+                Type = (Data.Entity.Type)model.Type,
                 Status = Status.OUTSTANDING,
                 AccountId = studentExist.Id,
                 Reference = charRef + numRef
@@ -75,7 +75,8 @@ namespace Finance.Service.Services
                 DueDate = invoice.DueDate,
                 Type = ((Finance.Data.Entity.Type)invoice.Type).ToString(), //nameof(invoice.Type),
                 Status = ((Status)invoice.Status).ToString(),
-                StudentId = model.Accounts.StudentId,
+                //StudentId = model.Accounts.StudentId,
+                StudentId = model.StudentId,
                 Links = links
             };
 

@@ -25,10 +25,10 @@ namespace Finance.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateInvoice(InvoiceModel model)
         {
-            if (model == null)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (model == null)
+            //{
+            //    return BadRequest(ModelState);
+            //}
             address = new Uri(Request.Host.ToString());
             url = address.ToString() + "/invoice";
 

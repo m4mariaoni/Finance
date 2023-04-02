@@ -10,8 +10,9 @@ namespace Finance.Data.Models
     {
         public double Amount { get; set; }
         public DateTime DueDate { get; set; }
-        public Entity.Type Type { get; set; }
-        public AccountModel Accounts { get; set; }
+        public int Type { get; set; }
+        public string StudentId { get; set; }
+        //public AccountModel Accounts { get; set; }
 
     }
 
