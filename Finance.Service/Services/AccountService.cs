@@ -110,9 +110,17 @@ namespace Finance.Service.Services
             return null;
         }
 
-        public Task<bool> UpdateAccount(Account account)
+        public async Task<bool> UpdateAccount(AccountViewModel model)
         {
-            throw new NotImplementedException();
+            var acct = _appRepository.Accounts.Search(x => x.StudentId == model.StudentId).FirstOrDefault();
+            if(acct != null)
+            {
+                acct.HasOutstandingBalance = model.HasOutstandingBalance;
+                _appRepository.Accounts.Update(acct);
+                _appRepository.Save();
+                return true;
+            }
+           return false;
         }
 
 

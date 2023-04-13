@@ -4,7 +4,7 @@
     ViewData["Title"] = "FindInvoice";
 }
 
-<h1>FindInvoice</h1>
+<h4>Invoice</h4>
 
 <div>
   
@@ -54,15 +54,15 @@
 </div>
 <div>
     
-    <a asp-action="FindInvoice">Find another Invoice</a>
+    <a class="btn btn-dark" style="float:left" asp-action="FindInvoice">Find another Invoice</a>
+   
 
      @if (Model.Status == "OUTSTANDING")
     {
       <form asp-action="PayInvoice">      
-         <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <input type="submit" value="Pay" class="btn btn-primary" />
-            </div>
+         <input type="hidden" asp-for="Id" /> 
+         <input type="submit" value="Pay Invoice" class="btn btn-primary"style="float:left; margin-left:15px;"  />
+          @*  <div class="form-group"></div>*@
         </form>
     }
 </div>

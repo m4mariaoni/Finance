@@ -25,8 +25,6 @@ namespace Finance.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAccount(AccountModel model)
         {
-            //Uri address = new Uri(Request.Host.ToString());      
-            //string url = address.ToString() + "/api/account";
 
             address = new Uri(Request.Host.ToString());
             url = address.ToString() + "/account";
@@ -82,5 +80,16 @@ namespace Finance.Controllers
             }
         }
 
+    
+        [HttpPost("UpdateOutstandingAccount")]
+        public async Task<IActionResult> UpdateOutstandingAccount(AccountViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _accountService.UpdateAccount(model);
+            return Ok(result);
+        }
     }
 }

@@ -18,6 +18,6 @@ namespace Finance.Service.Interface
 
         Task<Account> GetAccountById(long id);
 
-        Task<bool> UpdateAccount(Account account);
+        Task<bool> UpdateAccount(AccountViewModel model);
     }
 }

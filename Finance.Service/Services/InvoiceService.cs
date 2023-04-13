@@ -65,6 +65,10 @@ namespace Finance.Service.Services
             await _appRepository.Invoices.Add(invoice);
             _appRepository.Save();
 
+            studentExist.HasOutstandingBalance = true;
+            _appRepository.Accounts.Update(studentExist);
+            _appRepository.Save();
+
             Links links = RandomGenerator.LinkGenerator(invoice.Reference, url);
 
             InvoiceViewModel invoiceViewModel = new InvoiceViewModel()
@@ -79,6 +83,8 @@ namespace Finance.Service.Services
                 StudentId = model.StudentId,
                 Links = links
             };
+
+
 
             return invoiceViewModel;
         }
@@ -163,13 +169,17 @@ namespace Finance.Service.Services
                 {              
                    throw new Exception("Invoice does not exist");
                 }
-
                 invoiceExist.Status = Status.PAID;
                 _appRepository.Invoices.Update(invoiceExist);
                 _appRepository.Save();
 
                 Links links = RandomGenerator.LinkGenerator(invoiceExist.Reference, url);
                 var student = _appRepository.Accounts.Search(x => x.Id == invoiceExist.AccountId).Select(y => y.StudentId).FirstOrDefault();
+                var acct = _accountRepository.Search(x => x.Id == invoiceExist.AccountId).FirstOrDefault();
+                
+                acct.HasOutstandingBalance = false;
+                _appRepository.Accounts.Update(acct);
+                _appRepository.Save();
 
                 InvoiceViewModel view = new InvoiceViewModel()
                 {
