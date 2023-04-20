@@ -37,6 +37,9 @@ namespace Finance.Controllers
 
         }
 
+        /// <summary>
+        /// Pay Invoice to Finance
+        /// </summary>
         [HttpPut("{id}/pay")]
         public async Task<IActionResult> PayInvoice(long id)
         {
@@ -52,6 +55,9 @@ namespace Finance.Controllers
 
         }
 
+        /// <summary>
+        /// Check for invoice reference number
+        /// </summary>
         [HttpGet("{reference}")]
         public async Task<IActionResult> GetInvoicebyReference(string reference)
         {
@@ -64,6 +70,9 @@ namespace Finance.Controllers
            return Ok(result);
         }
 
+        /// <summary>
+        /// Return all invoice
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAllInvoice()
         {
@@ -72,6 +81,9 @@ namespace Finance.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Delete invoice by ID
+        /// </summary>
         [HttpDelete("/{id}/cancel")]
         public async Task<IActionResult> CancelInvoice(long id)
         {
