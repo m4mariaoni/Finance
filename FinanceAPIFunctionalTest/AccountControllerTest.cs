@@ -28,9 +28,26 @@ namespace FinanceAPIFunctionalTest
             var statusCode = response.StatusCode.ToString();
 
             Assert.AreEqual("OK", statusCode);
-            Assert.IsTrue(result.Count >  2);
-
+            Assert.IsTrue(result.Count >  2);       
             
+        }
+
+        [Fact]
+        public async Task GetStudentById()
+        {
+            var studentId = 10017;
+            var client = this.GetNewClient();
+            var response = await client.GetAsync($"/api/student/{studentId}");
+            response.EnsureSuccessStatusCode();
+
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<AccountViewModel>(stringResponse);
+            var statusCode = response.StatusCode.ToString();
+
+            Assert.AreEqual("OK", statusCode);
+            Assert.AreEqual(studentId, result.Id);
+            Assert.IsNotNull(result.StudentId);
+            Assert.IsTrue(result.Id > 0);
             
         }
     }
