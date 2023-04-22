@@ -4,7 +4,7 @@ using Finance.Infrastructure.ServiceExtension;
 using Finance.Service.Interface;
 using Finance.Service.Services;
 
-public class Program
+public partial class Program
 {
     private static void Main(string[] args)
     {
